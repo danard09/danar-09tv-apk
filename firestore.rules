@@ -1,0 +1,25 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper function to verify admin privileges
+    // Only users whose UID is securely registered in /admins/{uid} have write access.
+    function isAdmin() {
+      return request.auth != null &&
+        exists(/databases/$(database)/documents/admins/$(request.auth.uid));
+    }
+
+    // Channel metadata: Read is open to app viewers; modification requires server-side Admin role
+    match /channels/{channelId} {
+      allow read: if true;
+      allow create, update, delete: if isAdmin();
+    }
+
+    // Admin role registry:
+    // Never allow client-side users to grant themselves administrator privileges.
+    // Must be assigned through Firebase Console or Cloud Functions Admin SDK.
+    match /admins/{adminId} {
+      allow read: if request.auth != null && request.auth.uid == adminId;
+      allow write: if false;
+    }
+  }
+}

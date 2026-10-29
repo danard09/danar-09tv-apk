@@ -1,0 +1,6 @@
+{
+  "name": "DANAR TV",
+  "description": "Live streaming TV application for Android phones and TV with multi-language support (Kurdish Sorani, Badini, Arabic, English), adaptive video player, and remote navigation.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,27 @@
+{
+  "entities": {
+    "channels": {
+      "title": "Channels",
+      "description": "Live streaming TV channels",
+      "properties": {
+        "name": { "type": "string", "description": "Channel display name" },
+        "streamUrl": { "type": "string", "description": "HLS or HTTP stream URL" },
+        "logo": { "type": "string", "description": "Channel logo image URL" },
+        "category": { "type": "string", "description": "Channel category (e.g. KURD TV, News, Sports)" },
+        "referer": { "type": "string", "description": "Optional HTTP referer" },
+        "userAgent": { "type": "string", "description": "Optional custom User-Agent" }
+      },
+      "required": ["name", "streamUrl", "category"]
+    },
+    "admins": {
+      "title": "Admins",
+      "description": "Authorized server-side administrators",
+      "properties": {
+        "email": { "type": "string", "description": "Admin email address" },
+        "role": { "type": "string", "description": "Role identifier, e.g. superadmin" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["email", "role"]
+    }
+  }
+}
